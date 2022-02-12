@@ -30,13 +30,15 @@ module.exports =  {
     compress: true,
   },
   output: {
+    path: path.join(__dirname, 'dist'),
     filename: './js/main.js',
-    path: path.resolve(__dirname, 'dist'),
   },
   target: 'web',
   watch: true,
   watchOptions: {
     ignored: /node_modules/,
+    //aggregateTimeout: 200,
+    //poll: 1000,
   },
   module: {
     rules: [
@@ -56,7 +58,7 @@ module.exports =  {
         test: /\.css$/i,
         use: ['style-loader', 'css-loader'],
       },
-      /** SCSS/SAAS */
+      /** SCSS/SASS */
       {
         test: /\.s[ac]ss$/i,
         use: [
@@ -110,11 +112,13 @@ module.exports =  {
       }),
       // compress SVG
       new ImageMinimizerPlugin({
-        test: /\.(svg)$/i,
+        test: /\.(svg|jpe?g|png)$/i,
         minimizer: {
           implementation: ImageMinimizerPlugin.imageminMinify,
           options: {
             plugins: [
+              "imagemin-mozjpeg",
+              "imagemin-pngquant",
               [
                 "svgo",
                 {
@@ -161,8 +165,6 @@ module.exports =  {
     }),
 
     // example for do something only in production mode:
-    //mode == 'production' ? new CopyPlugin({
-    //patterns: ['img/**/*']
-    //}) : [],
+    //mode == 'production' ? new... : [],
   ),
 };
