@@ -18,10 +18,11 @@ npm run start - for development
 - fonts
 - cleaning all comments in the final assembly
 - auto-cleaning the dist directory before the build
+- automatic generation of avif \ webp formats from images
 
 ### The final build looks like a directory tree:
 - css 
-    - style.css
+  - style.css
 - fonts
   - all fonts
 - img
