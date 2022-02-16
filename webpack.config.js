@@ -110,7 +110,7 @@ module.exports =  {
         },
         extractComments: false,
       }),
-      // compress SVG
+      // compress SVG, create webp and avif
       new ImageMinimizerPlugin({
         test: /\.(svg|jpe?g|png)$/i,
         minimizer: {
@@ -143,6 +143,19 @@ module.exports =  {
             ],
           },
         },
+        deleteOriginalAssets: false,
+        generator: [
+          {
+            type: "asset",
+            preset: "webp",
+            //filename: "[name][ext]",
+            implementation: ImageMinimizerPlugin.imageminGenerate,
+            options: {
+              plugins: ["imagemin-webp"],
+            },
+          },
+
+        ],
       }),
     ],
   },
