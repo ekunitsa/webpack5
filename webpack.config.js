@@ -148,13 +148,25 @@ module.exports =  {
           {
             type: "asset",
             preset: "webp",
-            //filename: "[name][ext]",
             implementation: ImageMinimizerPlugin.imageminGenerate,
             options: {
-              plugins: ["imagemin-webp"],
+              plugins: [
+                ["imagemin-webp",
+                  {
+                    quality: 90
+                  }
+                ]
+              ],
             },
           },
-
+          {
+            type: "asset",
+            preset: "avif",
+            implementation: ImageMinimizerPlugin.imageminGenerate,
+            options: {
+              plugins: ["imagemin-avif"],
+            },
+          },
         ],
       }),
     ],
