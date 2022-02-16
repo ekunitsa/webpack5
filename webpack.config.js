@@ -117,7 +117,11 @@ module.exports =  {
           implementation: ImageMinimizerPlugin.imageminMinify,
           options: {
             plugins: [
-              "imagemin-mozjpeg",
+              ["imagemin-mozjpeg",
+                {
+                  quality: 90,
+                }
+              ],
               "imagemin-pngquant",
               [
                 "svgo",
