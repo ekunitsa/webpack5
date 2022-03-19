@@ -110,9 +110,39 @@ module.exports =  {
         },
         extractComments: false,
       }),
-      // compress SVG, create webp and avif
+      // create webp and avif
+      new ImageMinimizerPlugin({
+        test: /\.(jpe?g|png)$/i,
+        deleteOriginalAssets: false,
+        generator: [
+          {
+            type: "asset",
+            preset: "webp",
+            implementation: ImageMinimizerPlugin.imageminGenerate,
+            options: {
+              plugins: [
+                ["imagemin-webp",
+                  {
+                    quality: 90
+                  }
+                ]
+              ],
+            },
+          },
+          {
+            type: "asset",
+            preset: "avif",
+            implementation: ImageMinimizerPlugin.imageminGenerate,
+            options: {
+              plugins: ["imagemin-avif"],
+            },
+          },
+        ],
+      }),
+      // compress SVG, jpeg and png
       new ImageMinimizerPlugin({
         test: /\.(svg|jpe?g|png)$/i,
+        deleteOriginalAssets: false,
         minimizer: {
           implementation: ImageMinimizerPlugin.imageminMinify,
           options: {
@@ -143,31 +173,6 @@ module.exports =  {
             ],
           },
         },
-        deleteOriginalAssets: false,
-        generator: [
-          {
-            type: "asset",
-            preset: "webp",
-            implementation: ImageMinimizerPlugin.imageminGenerate,
-            options: {
-              plugins: [
-                ["imagemin-webp",
-                  {
-                    quality: 90
-                  }
-                ]
-              ],
-            },
-          },
-          {
-            type: "asset",
-            preset: "avif",
-            implementation: ImageMinimizerPlugin.imageminGenerate,
-            options: {
-              plugins: ["imagemin-avif"],
-            },
-          },
-        ],
       }),
     ],
   },
