@@ -16,7 +16,7 @@ module.exports =  {
   context: path.resolve(__dirname, 'src'),
   entry: './js/main.js',
   mode: mode,
-  devtool: 'inline-source-map',
+  devtool: 'cheap-module-source-map',
   devServer: {
     static: {
       directory: path.join(__dirname, 'dist')
