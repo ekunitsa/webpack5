@@ -6,16 +6,24 @@ const CopyPlugin = require('copy-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
 const { extendDefaultPlugins } = require("svgo");
+const SVGSpritemapPlugin = require('svg-spritemap-webpack-plugin');
 
 /* settings */
-const pages = ['index', 'index2']; // + in main.js for watcher
-const port = 3010;
-const mode = process.env.NODE_ENV;
+const settings = {
+  pages: ['index', 'index2'], //+ in main.js for watcher
+  port: 3010,
+  mode: process.env.NODE_ENV,
+  sprite: {
+    active: true,
+    input: ['./src/img/svg-sprite/**/*.svg'],
+    output: 'img/sprite.svg',
+  },
+}
 
 module.exports =  {
   context: path.resolve(__dirname, 'src'),
   entry: './js/main.js',
-  mode: mode,
+  mode: settings.mode,
   devtool: 'cheap-module-source-map',
   devServer: {
     static: {
@@ -25,7 +33,7 @@ module.exports =  {
       overlay: true,
       progress: true,
     },
-    port: port,
+    port: settings.port,
     open: true,
     compress: true,
   },
@@ -216,7 +224,7 @@ module.exports =  {
     // clear dist folder
     new CleanWebpackPlugin(),
     // convert twig templates to html
-    pages.map(
+      settings.pages.map(
       (page) =>
         new HtmlWebpackPlugin({
           inject: true,
@@ -225,6 +233,15 @@ module.exports =  {
           chunks: [page],
         })
     ),
+    // svg sprite generate
+    settings.sprite.active === true ? new SVGSpritemapPlugin(settings.sprite.input, {
+      output: {
+        filename: settings.sprite.output
+      },
+      sprite: {
+        prefix: ''
+      },
+    }) : [],
     // min css
     new MiniCssExtractPlugin({
       filename: './css/style.css'
@@ -235,6 +252,6 @@ module.exports =  {
     }),
 
     // example for do something only in production mode:
-    //mode == 'production' ? new... : [],
+    //settings.mode == 'production' ? new... : [],
   ),
 };

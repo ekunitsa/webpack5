@@ -20,6 +20,7 @@ npm run start - for development
 - auto-cleaning the dist directory before the build
 - automatic generation of avif \ webp formats from images (by default all images + "?as=..." syntax for sass)
 - url path to images from the current sass file (not from style.sass)
+- svg sprites generation (settings.sprite.active: true | false in webpack.config.js)
 
 ### The final build looks like a directory tree:
 - css 
@@ -28,6 +29,7 @@ npm run start - for development
   - all fonts
 - img
   - all images
+  - sprite.svg
 - js 
   - main.js
 - index.html
