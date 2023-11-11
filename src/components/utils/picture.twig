@@ -1,0 +1,31 @@
+{#
+Example of usage:
+
+{% include "./components/utils/picture.twig" with {
+    "path": "./img/",
+    "name": "example-name",
+    "format": "png",
+    "alt": "img alt",
+    "class": "example-class",
+    "avif": false,
+    "webp": false,
+    "x2": false
+} %}
+#}
+
+<picture>
+    {% if avif != false %}
+        <source srcset="{{ path ~ name }}.avif 1x{{ x2 != false ? ", " ~ path ~ name ~ "@2x.avif 2x" : "" }}" type="image/avif">
+    {% endif %}
+    {% if webp != false %}
+        <source srcset="{{ path ~ name }}.webp 1x{{ x2 != false ? ", " ~ path ~ name ~ "@2x.webp 2x" : "" }}" type="image/webp">
+    {% endif %}
+
+    <img
+        src="{{ path ~ name ~ "." ~ format }}"
+        srcset="{{ path ~ name ~ "." ~ format }} 1x{{ x2 != false ? ", " ~ path ~ name ~ "@2x." ~ format ~ " 2x" : "" }}"
+        {{ class ? 'class="' ~ class ~ '"' : "" }}
+        {{ alt ? 'alt="' ~ alt ~ '"' : "" }}
+        loading="lazy"
+    >
+</picture>

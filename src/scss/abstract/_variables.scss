@@ -1,0 +1,46 @@
+// Colors
+$color-red:          #f00;
+$color-black:        #0c0c0c;
+$color-white:        #fff;
+
+$color-transparent:    transparent;
+
+// Gradients
+
+// Shadow
+
+// Transition
+$transition-global: all, 0.2s;
+
+// Fonts
+$font-OpenSans: 'Open Sans', Arial, sans-serif;
+
+// Font weights
+$fw-regular:    normal;
+$fw-medium:     500;
+$fw-semi-bold:  600;
+$fw-bold:       700;
+$fw-extra-bold: 800;
+
+// Line-heights
+$lh-base:       1.5;
+$lh-small:      1.2;
+$lh-xs:         1;
+
+// Breakpoints
+// Devices/Media Queries
+$breakpoint-xs:     0;
+$breakpoint-sm:     375px;
+$breakpoint-md:     768px;
+$breakpoint-ls:     1024px;
+$breakpoint-lg:     1200px;
+$breakpoint-xl:     1440px;
+
+$grid-breakpoints: (
+    xs:  $breakpoint-xs,
+    sm:  $breakpoint-sm,
+    md:  $breakpoint-md,
+    ls:  $breakpoint-ls,
+    lg:  $breakpoint-lg,
+    xl:  $breakpoint-xl
+);

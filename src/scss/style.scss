@@ -1,0 +1,13 @@
+@import 'scss-reset/reset.css';
+@import "../fonts/OpenSans/stylesheet.css";
+
+// abstract styles
+@import "abstract/all";
+
+// common styles for different components
+@import 'common/all';
+
+// components
+
+// Plugins
+@import '~slick-carousel/slick/slick.css';
