@@ -28,19 +28,21 @@ $lh-small:      1.2;
 $lh-xs:         1;
 
 // Breakpoints
-// Devices/Media Queries
-$breakpoint-xs:     0;
-$breakpoint-sm:     375px;
-$breakpoint-md:     768px;
-$breakpoint-ls:     1024px;
-$breakpoint-lg:     1200px;
-$breakpoint-xl:     1440px;
+$breakpoint-xs:  0;
+$breakpoint-sm:  576px;
+$breakpoint-md:  768px;
+$breakpoint-lg:  992px;
+$breakpoint-xl:  1200px;
+$breakpoint-xxl: 1400px;
 
 $grid-breakpoints: (
-    xs:  $breakpoint-xs,
-    sm:  $breakpoint-sm,
-    md:  $breakpoint-md,
-    ls:  $breakpoint-ls,
-    lg:  $breakpoint-lg,
-    xl:  $breakpoint-xl
+    xs:   $breakpoint-xs,
+    sm:   $breakpoint-sm,
+    md:   $breakpoint-md,
+    lg:   $breakpoint-lg,
+    xl:   $breakpoint-xl,
+    xxl:  $breakpoint-xxl
 );
+
+// Container
+$container: 1230px;
