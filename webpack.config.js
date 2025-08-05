@@ -81,7 +81,8 @@ module.exports = {
                         options: {
                             sourceMap: true,
                             sassOptions: {
-                                outputStyle: 'compressed'
+                                outputStyle: 'compressed',
+                                silenceDeprecations: ['legacy-js-api', 'color-functions', 'global-builtin', 'import', 'mixed-decls']
                             }
                         }
                     }
@@ -107,10 +108,7 @@ module.exports = {
             /** TWIG */
             {
                 test: /\.twig$/,
-                use: [
-                    'raw-loader',
-                    'twig-html-loader'
-                ]
+                use: ['raw-loader', 'twig-html-loader']
             }
         ]
     },
@@ -137,7 +135,8 @@ module.exports = {
                         implementation: ImageMinimizerPlugin.imageminGenerate,
                         options: {
                             plugins: [
-                                ['imagemin-webp',
+                                [
+                                    'imagemin-webp',
                                     {
                                         quality: 90
                                     }
@@ -163,7 +162,8 @@ module.exports = {
                     implementation: ImageMinimizerPlugin.imageminMinify,
                     options: {
                         plugins: [
-                            ['imagemin-mozjpeg',
+                            [
+                                'imagemin-mozjpeg',
                                 {
                                     quality: 90
                                 }
@@ -201,7 +201,8 @@ module.exports = {
                         implementation: ImageMinimizerPlugin.imageminGenerate,
                         options: {
                             plugins: [
-                                ['imagemin-webp',
+                                [
+                                    'imagemin-webp',
                                     {
                                         quality: 90
                                     }
@@ -231,22 +232,25 @@ module.exports = {
         new CleanWebpackPlugin(),
         // convert twig templates to html
         settings.pages.map(
-            (page) => new HtmlWebpackPlugin({
-                inject: true,
-                template: `./${page}.twig`,
-                filename: `${page}.html`,
-                chunks: [page]
-            })
+            (page) =>
+                new HtmlWebpackPlugin({
+                    inject: true,
+                    template: `./${page}.twig`,
+                    filename: `${page}.html`,
+                    chunks: [page]
+                })
         ),
         // svg sprite generate
-        settings.sprite.active === true ? new SVGSpritemapPlugin(settings.sprite.input, {
-            output: {
-                filename: settings.sprite.output
-            },
-            sprite: {
-                prefix: ''
-            }
-        }) : [],
+        settings.sprite.active === true
+            ? new SVGSpritemapPlugin(settings.sprite.input, {
+                  output: {
+                      filename: settings.sprite.output
+                  },
+                  sprite: {
+                      prefix: ''
+                  }
+              })
+            : [],
         // min css
         new MiniCssExtractPlugin({
             filename: './css/style.css'
