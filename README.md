@@ -3,7 +3,7 @@
 My webpack5 config
 
 > [!NOTE]
-> 05.08.2025: This Webpack config was built when version 5 was ONLY released. Over time, it was slightly corrected\modernized, but no more than that. I highly recommend **NOT** to use it now in production projects, here it is rather for history :)
+> 05.08.2025: LEGACY | This Webpack config was built when version 5 was ONLY released. Over time, it was slightly corrected\modernized, but no more than that. I highly recommend **NOT** to use it now in production projects, here it is rather for history :)
 
 ### Installation:
 
